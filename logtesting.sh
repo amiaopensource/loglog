@@ -24,7 +24,7 @@ logPath=$logDir/$logName
 ##    The following commands create and open the log
 
 logCreate $logPath
-logOpen $logPath
+logOpen
 
 ##    The following commands add lines to the log
 
