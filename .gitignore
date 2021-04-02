@@ -1,2 +1,6 @@
-#Hidden Files
+# Hidden Files
 .DS_Store
+
+# Testing Files
+example.log
+log.log
