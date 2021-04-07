@@ -2,7 +2,7 @@
 
 ###   Script Configuration Section
 
-IFS=$'\n'                                    #this is necessary to deal with spaces in filepath
+#IFS=$'\n'                                   #this is necessary to deal with spaces in filepath. (found a better way to do this so I commented it out to be safe)
 source `dirname "$0"`/bash_logging.config    #this sets the path for the config file, which should be nested next to the script
 
 ###   Log Configuration Section
@@ -20,7 +20,7 @@ logName='log'  # The script will be named log.log
 #logName='ENTER YOUR OWN NAME HERE'  #the log will be named anything you want
 
 logName+='.log'
-logPath=$logDir/$logName
+logPath="$logDir/$logName"
 
 ##    More log setup options
 
