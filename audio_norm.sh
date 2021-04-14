@@ -14,6 +14,11 @@ logNewLine "Starting Audio Normalization Script"
 filename=$(basename -- "${1}")
 extension="${filename##*.}"
 newLogLine "Testing for fileype (audio or video)"
+if ffprobe "${1}" 2>&1 >/dev/null | grep -q Stream.*Video; then #greps the output of ffprobe for the word "video"
+	format=Video && logNewLine "Video stream detected" #if grep returns "ture" then assigns the variable $format to "Video" and adds a line to the log
+else
+	logNewLine "No video stream detected" #if grep does not find the word "Video" in the ffprobe output it leaves $format unassigned and adds a line to the log
+fi  
 logNewLine "Detecting max volume for ${filename}......."
 maxVolume=$(ffmpeg -hide_banner -i "${1}" -af "volumedetect" -vn -sn -dn -f null - 2>&1 | grep 'max_volume' | awk '{print $(NF-1)}')
 logAddToLine "Complete! Max volume is: ${maxVolume} dB"
