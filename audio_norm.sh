@@ -14,6 +14,8 @@ logNewLine "Starting Audio Normalization Script"
 filename=$(basename -- "${1}")
 extension="${filename##*.}"
 newLogLine "Testing for fileype (audio or video)"
+audioSampleRate=$(mediainfo "${1}" | grep 'Sampling rate' | sed 's@.*:@@' )
+logNewLine "The audio sampling rate is $audioSampleRate"
 logNewLine "Detecting max volume for ${filename}......."
 maxVolume=$(ffmpeg -hide_banner -i "${1}" -af "volumedetect" -vn -sn -dn -f null - 2>&1 | grep 'max_volume' | awk '{print $(NF-1)}')
 logAddToLine "Complete! Max volume is: ${maxVolume} dB"
