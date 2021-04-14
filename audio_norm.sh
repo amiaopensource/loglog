@@ -20,9 +20,9 @@ logAddToLine "Complete! Max volume is: ${maxVolume} dB"
 volumeBoost="${maxVolume:1}"
 audioCodec=$(ffprobe "${1}" 2>&1 >/dev/null |grep Stream.*Audio | sed -e 's/.*Audio: //' -e 's/[, ].*//')
 
-if [[ -z "${format+x}" ]]; then #if the variable $format is unassigned, then run ffmpeg command w/out -c:v copy, otherwise include it
-	logLog ffmpeg -hide_banner -loglevel error -i "${1}" -af "volume="${volumeBoost}"dB" -c:a ${audioCodec} -y "${1%.*}_normalized.${extension}"
-else
+if [ $format="Video" ]; then #if the variable $format is "Video", then run ffmpeg command with -c:v copy, otherwise omit it
 	logLog ffmpeg -hide_banner -loglevel error -i "${1}" -af "volume="${volumeBoost}"dB" -c:v copy -c:a ${audioCodec} -y "${1%.*}_normalized.${extension}"
+else
+	logLog ffmpeg -hide_banner -loglevel error -i "${1}" -af "volume="${volumeBoost}"dB" -c:a ${audioCodec} -y "${1%.*}_normalized.${extension}"
 fi
 
