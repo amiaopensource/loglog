@@ -12,7 +12,7 @@ This is a template that can be used to implement logging in Bash. There are a se
 * `logCreate`: This initializes the log. It must be called before any of the following functions will work.
 * `logOpen`: This opens the log using the native OS's preferred application.
 * `logNewLine`: This adds a new line to the log, including a timestamp
-* `logAddLine`: This appends to the last line in the log, not adding any timestamps
+* `logAddToLine`: This appends to the last line in the log, not adding any timestamps
 * `logLog`: This eponymous function logs how long it takes for a specific function to fun.
 * `logOut`: When placed in a script this function redirects the stdout and the stderr to the log. They are not printed to console
 
@@ -22,4 +22,4 @@ This is a template that can be used to implement logging in Python 3
 ## Sample Scripts
 
 ### audio_norm.sh
-This script will normalize the audio of whatever video file is input. The script uses ffmpeg detect the maximum volume of the input file and output that to the log. It will then run ffmpeg a second time to raise the volume of the input file to 0dB (standard normalization procedure). The script will also detect the input file's audio codec, preserving it in the output file. 
+This script will normalize the audio of whatever video file is input. The script uses ffmpeg detect the maximum volume of the input file and output that to the log. It will then run ffmpeg a second time to raise the volume of the input file to 0dB (standard normalization procedure). The script will also detect the input file's audio codec, preserving it in the output file.
