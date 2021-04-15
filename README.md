@@ -19,6 +19,8 @@ This is a template that can be used to implement logging in Bash. There are a se
 ### logscript.py
 This is a template that can be used to implement logging in Python 3
 
+#### Runtime Args
+
 There are two possible input flags
 
 * `-v` - This is the verbose flag. It re-routes all log messages to stoud (standard out) There are four different ways to run.
