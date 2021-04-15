@@ -12,7 +12,7 @@ This is a template that can be used to implement logging in Bash. There are a se
 * `logCreate`: This initializes the log. It must be called before any of the following functions will work.
 * `logOpen`: This opens the log using the native OS's preferred application.
 * `logNewLine`: This adds a new line to the log, including a timestamp
-* `logAddToLine`: This appends to the last line in the log, not adding any timestamps
+* `logCurrentLine`: This appends to the last line in the log, not adding any timestamps
 * `logLog`: This eponymous function logs how long it takes for a specific function to fun.
 * `logOut`: When placed in a script this function redirects the stdout and the stderr to the log. They are not printed to console
 
