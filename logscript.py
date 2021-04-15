@@ -76,6 +76,7 @@ def main():
 ##      This portion creates the handler that sends logging info to standard out
 ##      More info about handlers can be found here: https://docs.python.org/3/library/logging.handlers.html
 ##      This portion taken from here: https://stackoverflow.com/questions/2302315/how-can-info-and-debug-logging-message-be-sent-to-stdout-and-higher-level-messag
+##      Comment out the following four lines if you don't want any log into printed to stout
 
     logging_handler_out = logging.StreamHandler(sys.stdout)
     logging_handler_out.setLevel(verbose_level)
