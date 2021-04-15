@@ -35,5 +35,5 @@ logOpen
 ##    The following commands add lines to the log
 
 logNewLine "Text on a new line in the log goes here"
-logAddToLine "......Text added to the last line goes here"
+logCurrentLine "......Text added to the last line goes here"
 logLog sleep 5 #this command will log how long it takes to run a command. This example simply tells bash to pause for 5 seconds

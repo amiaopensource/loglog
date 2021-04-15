@@ -25,7 +25,7 @@ else
 fi
 logNewLine "Detecting max volume for ${filename}......."
 maxVolume=$(ffmpeg -hide_banner -i "${1}" -af "volumedetect" -vn -sn -dn -f null - 2>&1 | grep 'max_volume' | awk '{print $(NF-1)}')
-logAddToLine "Complete! Max volume is: ${maxVolume} dB"
+logCurrentLine "Complete! Max volume is: ${maxVolume} dB"
 volumeBoost="${maxVolume:1}"
 audioCodec=$(ffprobe "${1}" 2>&1 >/dev/null |grep Stream.*Audio | sed -e 's/.*Audio: //' -e 's/[, ].*//')
 
