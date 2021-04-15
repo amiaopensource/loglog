@@ -14,6 +14,8 @@ logNewLine "Starting Audio Normalization Script"
 filename=$(basename -- "${1}")
 extension="${filename##*.}"
 newLogLine "Testing for fileype (audio or video)"
+audioSampleRate=$(mediainfo "${1}" | grep 'Sampling rate' | sed 's@.*:@@' )
+logNewLine "The audio sampling rate is $audioSampleRate"
 audioBitRate=$(mediainfo "${1}"| awk '/Audio/{p=1}p' | grep 'Bit rate\|Kbps' | grep -v 'Overall\|mode' | sed 's@.*:@@' )
 logNewLine "The audio bit rate is $audioBitRate"
 if ffprobe "${1}" 2>&1 >/dev/null | grep -q Stream.*Video; then #greps the output of ffprobe for the word "video"
