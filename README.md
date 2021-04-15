@@ -19,6 +19,15 @@ This is a template that can be used to implement logging in Bash. There are a se
 ### logscript.py
 This is a template that can be used to implement logging in Python 3
 
+There are two possible input flags
+
+* `-v` - This is the verbose flag. It re-routes all log messages to stoud (standard out) There are four different ways to run.
+- `-v` - ERROR level messages are printed to stout
+- `-vv` - WARNING level messages are printed to stout
+- `-vvv` - INFO level messages are printed to stout
+- `-vvvv` - DEBUG level messages are printed to stout
+* `-d` - This runs the script in DEBUG mode. In this mode DEBUG messages and lower will be printed to the log
+
 ## Sample Scripts
 
 ### audio_norm.sh
