@@ -14,8 +14,8 @@ logNewLine "Starting Audio Normalization Script"
 filename=$(basename -- "${1}")
 extension="${filename##*.}"
 logNewLine "Testing for fileype (audio or video)"
-audioSampleRate=$(mediainfo "${1}" | grep 'Sampling rate' | sed 's@.*:@@' )
-logNewLine "The audio sampling rate is $audioSampleRate"
+audioSampleRate=$(mediainfo -f "${1}" | grep -m1 'Sampling rate' | sed 's@.*:@@' )
+logNewLine "The audio sampling rate is $audioSampleRate Hz"
 audioBitRate=$(mediainfo "${1}"| awk '/Audio/{p=1}p' | grep 'Bit rate\|Kbps' | grep -v 'Overall\|mode' | sed 's@.*:@@' )
 logNewLine "The audio bit rate is $audioBitRate"
 if ffprobe "${1}" 2>&1 >/dev/null | grep -q Stream.*Video; then #greps the output of ffprobe for the word "video"
@@ -30,8 +30,8 @@ volumeBoost="${maxVolume:1}"
 audioCodec=$(ffprobe "${1}" 2>&1 >/dev/null |grep Stream.*Audio | sed -e 's/.*Audio: //' -e 's/[, ].*//')
 
 if [[ $format = "Video" ]] ; then #if the variable $format is "Video", then run ffmpeg command with -c:v copy, otherwise omit it
-	logLog ffmpeg -hide_banner -loglevel error -i "${1}" -af "volume="${volumeBoost}"dB" -c:v copy -c:a ${audioCodec} -y "${1%.*}_normalized.${extension}"
+	logLog ffmpeg -hide_banner -loglevel error -i "${1}" -af "volume="${volumeBoost}"dB" -c:v copy -c:a ${audioCodec} -ar ${audioSampleRate} -y "${1%.*}_normalized.${extension}"
 else
-	logLog ffmpeg -hide_banner -loglevel error -i "${1}" -af "volume="${volumeBoost}"dB" -c:a ${audioCodec} -y "${1%.*}_normalized.${extension}"
+	logLog ffmpeg -hide_banner -loglevel error -i "${1}" -af "volume="${volumeBoost}"dB" -c:a ${audioCodec} -ar ${audioSampleRate} -y "${1%.*}_normalized.${extension}"
 fi
 logNewLine "Script Complete!\n\n"
