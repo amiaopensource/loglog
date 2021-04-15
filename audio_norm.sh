@@ -34,3 +34,4 @@ if [[ $format = "Video" ]] ; then #if the variable $format is "Video", then run 
 else
 	logLog ffmpeg -hide_banner -loglevel error -i "${1}" -af "volume="${volumeBoost}"dB" -c:a ${audioCodec} -y "${1%.*}_normalized.${extension}"
 fi
+logNewLine "Script Complete!\n\n"

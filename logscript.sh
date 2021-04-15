@@ -37,3 +37,4 @@ logOpen
 logNewLine "Text on a new line in the log goes here"
 logCurrentLine "......Text added to the last line goes here"
 logLog sleep 5 #this command will log how long it takes to run a command. This example simply tells bash to pause for 5 seconds
+logNewLine "This script is over now!\n\n"   #since we use echo -e to write to the log we can use \n to add some newline at the end of the log after this script runs
